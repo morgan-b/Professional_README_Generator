@@ -1,5 +1,14 @@
 // TODO: Include packages needed for this application
-
+const inquirer = require('inquirer');
+const fs = require('fs');
+inquirer
+.prompt([
+    {
+      type: 'input',
+      message: 'What is your name?',
+      name: 'name',
+    }
+])
 // TODO: Create an array of questions for user input
 const questions = [];
 

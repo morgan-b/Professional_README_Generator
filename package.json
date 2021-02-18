@@ -1,7 +1,12 @@
 {
-  "name": "inquirer",
+  "name": "Professional_README_Generator",
   "version": "1.0.0",
+  "description": "## Your Task",
   "main": "index.js",
+  "dependencies": {
+    "inquirer": "^7.3.3"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -9,12 +14,11 @@
     "type": "git",
     "url": "git+https://github.com/morgan-b/Professional_README_Generator.git"
   },
+  "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/morgan-b/Professional_README_Generator/issues"
   },
-  "homepage": "https://github.com/morgan-b/Professional_README_Generator#readme",
-  "keywords": [],
-  "description": ""
+  "homepage": "https://github.com/morgan-b/Professional_README_Generator#readme"
 }
