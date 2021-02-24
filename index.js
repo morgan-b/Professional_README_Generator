@@ -129,7 +129,7 @@ ${response.description}
 ## Installation
 
 To install necessary dependencies, run the following command:
-${response.dependencies}
+\`\`\`${response.dependencies}\`\`\`
 
 ## Usage
 ${response.repoinstructions}
@@ -164,21 +164,25 @@ function writeToFile(fileName, data) {
 
 
 
-
 //function to initialize app
 function init() { 
+    
     inquirer
+    
     //use inquirer to prompt users with questions to build their README.md
     .prompt(questions)
+
       //use user responses to create a new file
     .then(response => {
         var readme = generateREADME(response);
         writeToFile('README.md', readme)
     })
+
      //catch any errors
-    .catch(error => {
-        if (error.isTtyError) {
+    .catch(err => {
+        if (err.isTtyError) {
             console.log("Error! Please try again")
+
             // Prompt couldn't be rendered in the current environment
         } else {
             ("Error! Please try again")
