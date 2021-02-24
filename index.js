@@ -136,6 +136,7 @@ ${icon[0]}
 ## Installation
 
 To install necessary dependencies, run the following command:
+
 \`\`\`${response.dependencies}\`\`\`
 
 
@@ -157,6 +158,7 @@ ${response.tests}
 
 ## Questions
 For additional help or questions about collaboration, please reach out to ${response.email}
+
 Follow me on Github at [${response.github}](http://github.com/${response.github})
 `
 };
@@ -195,6 +197,9 @@ function init() {
             }
             if (response.license === 'BSD 3') {
                 icon.push("[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)")
+            }
+            if (response.license === 'None') {
+                icon.push(" ")
             }
             var readme = generateREADME(response);
 
