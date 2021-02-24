@@ -1,6 +1,7 @@
 //Packages for app
 const inquirer = require('inquirer');
 const fs = require('fs');
+const icon = [];
 
 const questions = [
     //github username
@@ -58,6 +59,7 @@ const questions = [
         message: 'Please choose your license',
         name: 'license',
         choices: ["MIT", "APACHE 2.O", "GPL 3.0", "BSD 3", "None"],
+
     },
     //installation instructions
     {
@@ -115,8 +117,12 @@ const generateREADME = (response) => {
     return `
 # ${response.projectname}
 
+
 ## Description
 ${response.description}
+
+${icon[0]}
+
 
 ## Table of Contents
 1. [Installation](#installation)
@@ -126,28 +132,32 @@ ${response.description}
 5. [Tests](#tests)
 6. [Questions](#tests)
 
+
 ## Installation
 
 To install necessary dependencies, run the following command:
 \`\`\`${response.dependencies}\`\`\`
 
+
 ## Usage
 ${response.repoinstructions}
+
 
 ## License
 licensed under ${response.license}
 
+
 ## Contributing
 ${response.repocontribute}
+
 
 ## Tests
 ${response.tests}
 
+
 ## Questions
 For additional help or questions about collaboration, please reach out to ${response.email}
-
 Follow me on Github at [${response.github}](http://github.com/${response.github})
-
 `
 };
 
@@ -165,29 +175,43 @@ function writeToFile(fileName, data) {
 
 
 //function to initialize app
-function init() { 
-    
+function init() {
+
     inquirer
-    
-    //use inquirer to prompt users with questions to build their README.md
-    .prompt(questions)
 
-      //use user responses to create a new file
-    .then(response => {
-        var readme = generateREADME(response);
-        writeToFile('README.md', readme)
-    })
+        //use inquirer to prompt users with questions to build their README.md
+        .prompt(questions)
 
-     //catch any errors
-    .catch(err => {
-        if (err.isTtyError) {
-            console.log("Error! Please try again")
+        //use user responses to create a new file
+        .then(response => {
+            if (response.license === 'MIT') {
+                icon.push("[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)")
+            }
+            if (response.license === 'APACHE 2.O') {
+                icon.push("[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)")
+            }
+            if (response.license === 'GPL 3.0') {
+                icon.push("[![License: GPL v3](https://img.shields.io/badge/License-GPL%20v3-blue.svg)](http://www.gnu.org/licenses/gpl-3.0)")
+            }
+            if (response.license === 'BSD 3') {
+                icon.push("[![License](https://img.shields.io/badge/License-BSD%203--Clause-blue.svg)](https://opensource.org/licenses/BSD-3-Clause)")
+            }
+            var readme = generateREADME(response);
 
-            // Prompt couldn't be rendered in the current environment
-        } else {
-            ("Error! Please try again")
-        }
-    });
+
+            writeToFile('README.md', readme)
+        })
+
+        //catch any errors
+        .catch(err => {
+            if (err.isTtyError) {
+                console.log("Error! Please try again")
+
+                // Prompt couldn't be rendered in the current environment
+            } else {
+                ("Error! Please try again")
+            }
+        });
 }
 
 // Function call to initialize app
