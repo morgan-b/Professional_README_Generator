@@ -204,7 +204,7 @@ function init() {
             var readme = generateREADME(response);
 
 
-            writeToFile('README.md', readme)
+            writeToFile('READMEFile.md', readme)
         })
 
         //catch any errors
